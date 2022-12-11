@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container>div {
+            width: 42px;
+            height: 42px;
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+            border-radius: 5px;
+        }
+
+        .container>:nth-child(1) {
+            width: 40%;
+        }
+
+        .container>:nth-child(5) {
+            width: 40%;
+            background-color: black;
+            color: white;
+            margin-top: 20px;
+            padding: 10px 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* body {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        #winner{
+            border-radius: 10px;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="winner">Result</div>
+        <div id="member-1"></div>
+        <div id="member-2"></div>
+        <div id="member-3"></div>
+        <button id="roll">Roll Dice</button>
+    </div>
+    <script>
+        let winner = document.querySelector("#winner");
+        let member1 = document.querySelector("#member-1")
+        let member2 = document.querySelector("#member-2")
+        let member3 = document.querySelector("#member-3")
+        let roll = document.querySelector("#roll")
+        function Game() {
+            var gamer = Math.floor(Math.random() * 6) + 1;
+            return gamer;
+        }
+        roll.addEventListener("click", function () {
+            var result1 = Game();
+            var result2 = Game();
+            var result3 = Game();
+
+            member1.innerText = result1;
+            member2.innerText = result2;
+            member3.innerText = result3;
+
+            if (result1 > result2 && result1 > result3) {
+                member1.style.backgroundColor = "Green"
+                member2.style.backgroundColor = "red"
+                member3.style.backgroundColor = "red"
+                winner.innerHTML = "A is winner"
+                winner.style.backgroundColor = "black"
+                winner.style.color = "white"
+            }
+
+            else if (result2 > result1 && result2 > result3) {
+                member2.style.backgroundColor = "Green"
+                member3.style.backgroundColor = "red"
+                member1.style.backgroundColor = "red"
+                winner.innerHTML = "B is winner"
+                winner.style.backgroundColor = "black"
+                winner.style.color = "white"
+            }
+
+            else if (result3 > result2 && result3 > result1) {
+                member3.style.backgroundColor = "Green"
+                member2.style.backgroundColor = "red"
+                member1.style.backgroundColor = "red"
+                winner.innerHTML = "C is winner"
+                winner.style.backgroundColor = "black"
+                winner.style.color = "white"
+            }
+
+            else if (result1 === result2) {
+                member3.style.backgroundColor = "red"
+                member2.style.backgroundColor = "blue"
+                member1.style.backgroundColor = "blue"
+                winner.innerHTML = "Tie in Player 1 and Player 2"
+                winner.style.backgroundColor = "black"
+                winner.style.color = "white"
+            }
+            else if (result1 === result3) {
+                member3.style.backgroundColor = "blue"
+                member2.style.backgroundColor = "red"
+                member1.style.backgroundColor = "blue"
+                winner.innerHTML = "Tie in Player 1 and Player 3"
+                winner.style.backgroundColor = "black"
+                winner.style.color = "white"
+            }
+            else if (result2 === result3) {
+                member3.style.backgroundColor = "blue"
+                member2.style.backgroundColor = "blue"
+                member1.style.backgroundColor = "red"
+                winner.innerHTML = "Tie in Player 2 and Player 3"
+                winner.style.backgroundColor = "black"
+                winner.style.color = "white"
+            }
+        })
+
+    </script>
+</body>
+
+</html>
